@@ -1,0 +1,19 @@
+{
+    "compilerOptions": {
+      "noImplicitAny": false,
+      "noEmitOnError": true,
+      "removeComments": false,
+      "sourceMap": true,
+      "target": "ES2017",
+      "lib": ["es2017", "dom"],
+      "outFile": "app.js"
+    },
+    "include": [
+      "src/**/*"
+    ],
+    "exclude": [
+      "node_modules",
+      "wwwroot"
+    ]
+  }
+  

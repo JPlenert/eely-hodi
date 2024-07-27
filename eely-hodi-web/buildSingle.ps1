@@ -1,0 +1,1 @@
+dotnet ..\..\eely-base-web\_contrib\HtmlSingler.dll index.html index.min.html

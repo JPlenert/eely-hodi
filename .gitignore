@@ -1,0 +1,18 @@
+### ESP-IDF
+
+**/build/*
+
+### KiCAD
+
+**/*-pcb/*-backups/*
+**/*-pcb/fp-info-cache
+
+## Web
+
+**/index.html
+**/index.min.html
+**/app.js
+**/app.js.map
+**/style.css.min
+**/style.css
+**/.vscode/*
