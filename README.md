@@ -15,6 +15,9 @@ HoDi is a 64x32 matrix LED display driven by a ESP32 that shows:
 ## How to build
 
 
+* Clone repository with `--recursive` to clone the submodules
+* Install esbuild with `npm install` in the web folder
+
 * Build eely-hodi-web for release
 * Build eely-hodi-esp
 
