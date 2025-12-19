@@ -35,7 +35,7 @@ Json DeviceInstanceShelly::GetStatus()
 
 	if (_config.access == DeviceAccess_Shelly_Direct)
 	{
-		if (_config.type == DeviceType_Shelly_PlugS || _config.type == DeviceType_Shelly_Pro3EM)
+		if (_config.type == DeviceType_Shelly_PlugS || _config.type == DeviceType_Shelly_Pro3EM || _config.type == DeviceType_Shelly_ProEM)
 		{
 			// Gen2 Devices with enabled auth are using the digest algorithm for authentication
 			// This was introduced on Dec 15, 2023 and is not part of V5.1.2 of ESP IDF
@@ -58,12 +58,19 @@ Json DeviceInstanceShelly::GetStatus()
 		if (res > 0)
 		{
 			json = Json(buffer);
-			// ESP_LOGI(TAG, "Success getting data: %s", buffer);
-			_continuousSyncErrorCount = 0;
+			if (json.IsEmpty())
+			{
+				_continuousSyncErrorCount++;
+				_lastError = "Status is empty";
+			}
+			else
+				_continuousSyncErrorCount = 0;
 		}
 		else
 		{
 			_lastError = http.GetLastError();
+			if (_lastError.empty())
+				_lastError = "http GET failed";
 			ESP_LOGI(TAG, "Error getting data: %s", _lastError.c_str());
 			_continuousSyncErrorCount++;
 		}

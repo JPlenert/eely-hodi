@@ -2,7 +2,9 @@
 #include "Eelyapp.h"
 #include "DeviceTask.h"
 #include "DeviceInstanceShelly3EM.h"
+#include "DeviceInstanceShellyEM.h"
 #include "DeviceInstanceShellyPro3EM.h"
+#include "DeviceInstanceShellyProEM.h"
 #include "DeviceInstanceShellyHT.h"
 #include "DeviceInstanceShellyPlugS.h"
 #include "DeviceInstanceTibberPrice.h"
@@ -28,12 +30,24 @@ void DeviceTask::ApplyConfig(ConfigStoreApp& config)
 			_devicesVector.push_back(dev);
 			_devicesPrioList.push_back(dev);
 		}
+		else if ((*cfg)->type == DeviceType_Shelly_EM)
+		{
+			DeviceInstanceShellyEM *dev = new DeviceInstanceShellyEM((ConfigDeviceShelly&)**cfg);
+			_devicesVector.push_back(dev);
+			_devicesPrioList.push_back(dev);
+		}		
 		else if ((*cfg)->type == DeviceType_Shelly_Pro3EM)
 		{
 			DeviceInstanceShellyPro3EM *dev = new DeviceInstanceShellyPro3EM((ConfigDeviceShelly&)**cfg);
 			_devicesVector.push_back(dev);
 			_devicesPrioList.push_back(dev);
-		}
+		}		
+		else if ((*cfg)->type == DeviceType_Shelly_ProEM)
+		{
+			DeviceInstanceShellyProEM *dev = new DeviceInstanceShellyProEM((ConfigDeviceShelly&)**cfg);
+			_devicesVector.push_back(dev);
+			_devicesPrioList.push_back(dev);
+		}		
 		else if ((*cfg)->type == DeviceType_Shelly_HT)
 		{
 			DeviceInstanceShellyHT* dev = new DeviceInstanceShellyHT((ConfigDeviceShelly&)**cfg);

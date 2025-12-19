@@ -284,7 +284,8 @@ optional<vector<EnergyEquationItem>> ConfigStoreApp::ReadEnergyEquationItem(char
 ConfigDeviceBase* ConfigStoreApp :: ReadDevice(Json& json)
 {
     string value = json.GetString("type");
-    if (value == "shelly_3em" || value == "shelly_pro3em" || value == "shelly_ht" || value == "shelly_plugs")
+    if (value.rfind("shelly_", 0) == 0)
+    //if (value == "shelly_3em" || value == "shelly_pro3em" || value == "shelly_ht" || value == "shelly_plugs")
         return ReadShellyDevice(json);
     else if (value == "tibber_price") {
         ConfigDeviceTibber* device = new ConfigDeviceTibber(*this);
@@ -313,6 +314,10 @@ ConfigDeviceShelly* ConfigStoreApp :: ReadShellyDevice(Json& json)
         device->type = DeviceType_Shelly_HT;
     else if (value == "shelly_plugs")
         device->type = DeviceType_Shelly_PlugS;
+    else if (value == "shelly_em")
+        device->type = DeviceType_Shelly_EM;
+    else if (value == "shelly_proem")
+        device->type = DeviceType_Shelly_ProEM;
     else
     {
         _hodiConfigError = "device>type";
@@ -333,7 +338,7 @@ ConfigDeviceShelly* ConfigStoreApp :: ReadShellyDevice(Json& json)
     }
 
     device->devId = json.GetString("id");
-    if (device->devId.empty())
+    if (device->access == DeviceAccess_Shelly_CloudAPI && device->devId.empty())
     {
         _hodiConfigError = "devices>Id";
         delete device;

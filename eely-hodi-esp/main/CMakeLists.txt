@@ -2,8 +2,14 @@ idf_component_register(SRCS
 
 "Api/DeviceInfoGetHodiHandler.cpp" "Api/DisplayImageSetHandler.cpp" "Api/DisplaySubtitleSetHandler.cpp"
 
-"Devices/DeviceInstanceShelly.cpp" "Devices/DeviceInstanceShellyPro3EM.cpp" "Devices/DeviceInstanceShelly3EM.cpp" "Devices/DeviceInstanceShellyHT.cpp" 
-"Devices/DeviceInstanceShellyPlugS.cpp" "Devices/DeviceInstanceTibberPrice.cpp"
+"Devices/DeviceInstanceShelly.cpp" 
+"Devices/DeviceInstanceShellyPro3EM.cpp" 
+"Devices/DeviceInstanceShellyProEM.cpp" 
+"Devices/DeviceInstanceShelly3EM.cpp" 
+"Devices/DeviceInstanceShellyEM.cpp" 
+"Devices/DeviceInstanceShellyHT.cpp" 
+"Devices/DeviceInstanceShellyPlugS.cpp" 
+"Devices/DeviceInstanceTibberPrice.cpp"
 
 "Logic/Display.cpp" "Logic/DisplayLogic.cpp"  "Logic/Segment7.cpp" "Logic/Segment7Large.cpp" 
 "Logic/SubtitleDisplayTextBase.cpp" "Logic/SubtitleDisplayTextEnergy.cpp" "Logic/SubtitleDisplayTextClimate.cpp" "Logic/SubtitleDisplayTextStatus.cpp" 

@@ -1,19 +1,26 @@
 {
-    "compilerOptions": {
-      "noImplicitAny": false,
-      "noEmitOnError": true,
-      "removeComments": false,
-      "sourceMap": true,
-      "target": "ES2017",
-      "lib": ["es2017", "dom"],
-      "outFile": "app.js"
-    },
-    "include": [
-      "src/**/*"
-    ],
-    "exclude": [
-      "node_modules",
-      "wwwroot"
-    ]
-  }
+  "compilerOptions": {
+    "target": "es2017",
+    "lib": ["es2017", "dom"],
+    "jsx": "react",
+    "jsxFactory": "h",
+    "jsxFragmentFactory": "Fragment",
+
+    "moduleResolution": "bundler",
+
+    "paths": {
+      "eely-base-web": ["./modules/eely-base-web/src/index.ts"],
+      "eely-base-web/*": ["./modules/eely-base-web/src/*"]
+    }
+  },
+  "include": [
+    "**/*.ts",
+    "**/*.tsx"
+  ],
+  "exclude": [
+    "node_modules",
+    "./dist/**/*"
+  ]
+}
+
   

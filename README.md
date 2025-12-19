@@ -14,22 +14,8 @@ HoDi is a 64x32 matrix LED display driven by a ESP32 that shows:
 
 ## How to build
 
-Use the following directory structure and repositories:
 
-````
-eely/
-├─ eely-base-web (https://github.com/JPlenert/eely-base-web)
-├─ eely-esp-components
-│  ├─ components
-│     ├─ eely-base-esp (https://github.com/JPlenert/eely-base-esp)
-│     ├─ eely-smart-matrix (https://github.com/JPlenert/eely-smart-matrix)
-├─ eely-hodi (this repository)
-````
-
-Build order:
-
-* Build eely-hodi-web
-* Minimize index.html (.\buildSingle.ps1)
+* Build eely-hodi-web for release
 * Build eely-hodi-esp
 
 Uses ESP-IDF V5.3 for espressif ESP32.
@@ -43,7 +29,7 @@ Since I'm more a "backend guy" (white characters on black screen), the frontend 
 
 eely-HoDi is distributed under the GPL v3 license:
 
-    Copyright (C) 2022-2024 by Joerg Plenert
+    Copyright (C) 2022-2025 by Joerg Plenert
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by

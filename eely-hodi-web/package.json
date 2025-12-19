@@ -1,0 +1,10 @@
+{
+  "name": "eely-hodi-web",
+  "dependencies": {
+    "esbuild": "^0.27.0"
+  },
+  "scripts": {
+    "build dev": "node ./build_dev.js",
+    "build rel": "node ./build_rel.js"
+  }  
+}

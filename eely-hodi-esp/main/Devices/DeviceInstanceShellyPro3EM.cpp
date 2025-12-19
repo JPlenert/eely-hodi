@@ -28,9 +28,9 @@ double DeviceInstanceShellyPro3EM::GetLastReadingDouble(int idx)
 	case 20: return _p2Power;
 	case 21: return _p2Pf;
 	case 22: return _p2Voltage;
-	case 30: return _p2Power;
-	case 31: return _p2Pf;
-	case 32: return _p2Voltage;
+	case 30: return _p3Power;
+	case 31: return _p3Pf;
+	case 32: return _p3Voltage;
 	}
 	return 0;
 }

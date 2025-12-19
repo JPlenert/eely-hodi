@@ -1,0 +1,9 @@
+[submodule "eely-hodi-esp/components/eely-base-esp"]
+	path = eely-hodi-esp/components/eely-base-esp
+	url = https://github.com/JPlenert/eely-base-esp.git
+[submodule "eely-hodi-esp/components/eely-smart-matrix"]
+	path = eely-hodi-esp/components/eely-smart-matrix
+	url = https://github.com/JPlenert/eely-smart-matrix.git
+[submodule "eely-hodi-web/modules/eely-base-web"]
+	path = eely-hodi-web/modules/eely-base-web
+	url = https://github.com/JPlenert/eely-base-web.git

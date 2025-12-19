@@ -17,8 +17,10 @@ enum DeviceType
     DeviceType_Shelly_HT,
     DeviceType_Shelly_PlugS,
     DeviceType_Shelly_Pro3EM,
-
     DeviceType_Tibber_Price,
+
+    DeviceType_Shelly_ProEM,
+    DeviceType_Shelly_EM,
 };
 
 enum DeviceAccessType
