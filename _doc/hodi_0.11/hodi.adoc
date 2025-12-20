@@ -1,0 +1,258 @@
+:root:
+:lang: de
+:data-uri:
+:encoding: utf-8
+:revdate: {localdate} {localtime}
+:imagesdir: ./_images
+// :stylesheet: ./../_styles/schmiede.css
+:pdf-page-size: A4
+:title-page:
+
+:toc-title: Inhaltsverzeichnis
+:last-update-label: Erstellt:
+:version-label: Version: 
+
+:tip-caption: Tip
+:note-caption: Hinweis
+:caution-caption: Achtung
+:warning-caption: Warnung
+:example-caption: Beispiel
+:important-caption: Wichtig
+:toc: left
+
+:numbered:
+:author: (c) 2023-24 by Joerg Plenert
+:revnumber: 0.11-1
+
+:doctitle: eely.eu - HoDi
+:footername: eely.eu - HoDi
+
+= eely.eu - HoDi
+
+== Einleitung
+
+image::hodi_energy_small_positive.png["Ansicht Hodi mit Energieanzeige mit PV-Produktion",width = 600, align=center, title-align=center]
+
+Das vorliegende Dokument beschreibt die Funktion von eely.eu - HoDi, einer Software für ein multifunktionales "Home-Display" mit insgesamt 64 x 32 LEDs. Mittels dieser Software können die Uhrzeit und andere Informationen aus dem häuslichen Umfeld auf einer speziellen Hardware angezeigt werden
+
+.Ansicht Hodi mit nur Uhrzeit
+image::hodi_clock_full.png["Ansicht Hodi mit nur Uhrzeit", width = 350]
+
+.Ansicht Hodi mit Temperatur
+image::hodi_temp_ia.png["Ansicht Hodi mit Temperatur", width = 350]
+
+== Funktionen
+
+Im Standard zeigt HoDi eine Uhrzeit im 24-Stundenformat mit Stunden, Minuten und Sekunden an. Die Zeit wird dabei über das Internet ermittelt und auch in regelmäßigen Abständen abgeglichen. Damit ist die Uhrzeit stets recht genau. Der Abgleich erfolgt über das SNTP-Protokoll mit einem Server der Physikalisch-Technische Bundesanstalt.
+
+Ein Blinken des Doppelpunktes zwischen Stunden und Minuten deutet auf eine Problem mit dem WLAN hin. Ein Blinken des Doppelpunktes zwischen Minuten und Sekunden deutet auf ein Problem mit der Verbindung zu einem Zusatzgerät hin.
+
+Ausserdem können weitere Informationen auf der Anzeige dargestellt werden. Hierzu sind ggf. separat zu erwerbende Zusatzgeräte notwendig.
+
+* Stromverbrauch oder -Erzeugung
+** link:https://www.shelly.com/de/products/shop/shelly-3em-1[Shelly 3EM]
+** link:https://www.shelly.com/de/products/shop/shelly-pro-3-em-120-a-1[Shelly Pro 3EM]
+** link:https://www.shelly.com/de/products/shop/shelly-plus-plug-s-1[Shelly Plug S Geräte]
+* Temperaturen und Luftfeuchtigkeit
+** link:https://www.shelly.com/de/products/shop/shelly-ht-w[Shelly H&T]
+* Empfangsqualität des WLAN
+* Fehlerzustände von HoDi
+
+Wird HoDi so konfiguriert, dass mehrere Informationen angezeigt werden (z.B. Stromverbrauch und Temperatur), dann wechselt die Anzeige zwischen den Informationen.
+
+== Inbetriebnahme
+
+Dieser Abschnitt geht davon aus, dass eine fertige HoDi-Hardware mit entsprechender Software vorliegt.
+
+Bei der Inbetriebnahme muss zunächst die Spannungsversorgung zum Gerät (in der Regel mittels USB-Netzteil) hergestellt werden. Anschließend startet HoDi und zeigt die Software-Version sowie die den Status der Startvorganges.
+
+.Startansicht HoDi
+image::hodi_startup.png["Startansicht HoDi", width = 350]
+
+Liegt dem Gerät noch keine Konfiguration vor - wie bei einem neuen oder einem zurückgesetzten Gerät - wird der AP-Modus aktiviert. Dieses wird im Display durch die Anzeige von `AP` und der IP-Adresse von HoDi dargestellt.
+
+.HoDi im AP-Modus
+image::hodi_ap.png[width = 350]
+
+Im AP-Modus müssen nun die Zugangsdaten zum heimischen WLAN-Netzwerk konfiguriert werden. Hierzu muss ein beliebiges Endgerät (am besten ein Smart-Phone) mit dem HoDi verbunden werden:
+
+* Suchen und verbinden mit dem WLAN, welches mit `eely_` beginnt.
+* In der Regel wird das Endgerät automatisch einen Web-Browser öffnen und auf die Konfigurationsseite von HoDi wechseln. Ist dieses nicht der Fall, so kann die Konfigurationsseite über die URL `http://192.168.4.1` aufgerufen werden.
+* Über das Zahnrad-Symbol kann im Abschnitt 'Wifi settings' das WLAN konfiguriert werden:
+** SSID - Geben Sie hier den Namen Ihres WLANs ein. Achtung, es werden nur 2,4 GHz-WLAN unterstützt.
+** Password - Geben Sie hier das Kennwort zu Ihrem WLAN ein.
+* Mit einem Klick auf 'connect' wird die Konfiguration gespeichert und HoDi startet erneut.
+
+.Initiale Konfiguration am Beispiel Pixel 6
+image::hodi_initial_config.png[]
+
+Wenn sich HoDi nach dem Neustart mit dem WLAN verbinden und die Uhrzeit aus dem Internet abrufen kann, wird die Uhrzeit auf dem Display angezeigt.
+
+Danach können Sie, je nach Konfiguration Ihres Netzwerkes, über einen Browser auf die Web-Seite von HoDi zugreifen: 
+
+* http://eely_<6Stellige HoDi-Id>
+* http://<IP-Adresse von HiDi>
+
+Sollte keine Verbindung zum WLAN möglich sein, wird im Display `wifis con` mit einer Ziffer stehen, die stetig steigt. Hiermit wird die Anzahl der fehlerhaften Verbindungsversuche zum konfigurierten WLAN angezeigt.
+
+In diesem Fall kann HoDi zurückgesetzt und die Konfiguration kann erneut durchgeführt werden.
+
+== Anzeigeeinstellungen
+
+Anzeigeeinstellungen können über das Bildschirmsymbol im Menü `Display settings` vorgenommen werden.
+
+* `Show status subtitle` zeigt im Display Fehlermeldungen an, wenn vorhanden.
+* `Show RSSI subtitle` zeige im Display die Empfangsstärke des WLAN an. Die Zahl ist grundsätzlich negativ, um so höher die Zahl, desto besser der Empfang. Dieses wird auch farblich (grün = gut, gelb = mittel, rot = schlecht) auf dem Display angezeigt.
+
+== Zusatzgeräte verwalten
+
+Um Zusatzgerät zu verwalten gehen Sie wie folgt vor:
+
+* Navigieren Sie mit einem Browser auf die Web-Seite von HoDi (http://eely_<HoDi-Id> oder http://<IP>).
+* Wählen Sie das Bildschirmsymbol
+
+=== Shelly Cloud
+
+Auf die Geräte von Shelly können Sie über die Cloud von Shelly zugreifen, oder aber direkt über Ihr lokales Netzwerk. Generell sollten batteriegetriebene Geräte über die Shelly Cloud abgerufen werden.
+
+Hierzu öffnen Sie das Menü `Shelly cloud config` und tragen dort den `Cloud authorization key` sowie den `Cloud host` ein. Beide Informationen finden Sie in Ihrem Shelly-Portal.
+
+=== Neues Zusatzgerät hinzufügen
+
+Um ein neues Zusatzgeräte hinzuzufügen gegen Sie wie folgt vor:
+
+* Öffnen Sie das Menü `Devices config`
+* Wählen Sie unten aus der Liste den Typ des hinzuzufügenden Gerätes aus
+* Klicken Sie auf "+" neben dem Typen
+* Vergeben Sie im Feld `Name or description of device` einen sprechenden Namen für das Gerät
+* Tragen Sie die Id des Gerätes ein. Bei Shelly finden Sie diese Information im Shelly-Portal.
+* Im Feld `Access type` geben Sie an, ob das Gerät über ihr lokales Netzwerk 'direct' oder über die Shelly Cloud `Shelly Cloud API` erreicht werden soll. Voraussetzung für die Nutzung der `Shelly Cloud API` ist die Erfassung der Cloud-Zugangsdaten im Abschnitt `Shelly Cloud`.
+* Füllen Sie die restlichen Felder entsprechend der Beschriftung aus.
+
+=== Zusatzgerät editieren
+
+Um die Konfiguration eines Zusatzgerätes zu ändern, gegen Sie wie folgt vor:
+
+* Öffnen Sie das Menü `Devices config`.
+* Wählen Sie das entsprechende Gerät aus.
+* Ändern Sie die gewünschten Daten.
+
+=== Zusatzgerät löschen
+
+Um ein Zusatzgerät zu löschen, gegen Sie wie folgt vor:
+
+* Öffnen Sie das Menü `Devices config`.
+* Klicken Sie auf das Mülltonnensymbol.
+
+Bitte beachten Sie, dass nach dem Löschen ggf. die `Energy display config` sowie die `Climate display config` angepasst werden muss.
+
+== Energieanzeige
+
+Die Energieanzeige kann über über das Bildschirmsymbol im Menü `Energy display config` vorgenommen werden.
+
+Bei der Energieanzeige von HoDi können die Werte verschiedene Energiemessgeräte berechnet und die resultierenden Werte angezeigt werden. Aktuell gibt es die folgenden Modi (`Energy display type`):
+
+* `None`- Keine Energieanzeige
+* `Total`` - Es wird nur ein Wert angezeigt. Je nachdem ob der Wert positiv oder negativ ist, ist die Anzeige des Wertes rot oder grün.
+* `Total & production` - Ist die Erzeugung gleich Null, wird nur ein Wert, analog zu Total, angezeigt. Ist die Erzeugung positiv, wird zusätzlich zum Totalwert die Erzeugung in gelb angezeigt.
+* `Total & production & storage`` - TBD
+
+Die einzelnen Formeln müssen in die Felder `Total calculation`, `Production calculation` und `Storage calculation` eingetragen werden. Das Feld `Consumption calculation` ist aktuell ohne Funktion.
+
+Die Formeln bestehen aus einer Sequenz von jeweils einem Plus- oder Minuszeichen, gefolgt von der Nummer eines Zusatzgerätes.
+
+Beispiele:
+
+* Sie haben nur ein Energiemessgerät. Das Gerät ist als erstes Gerät in der Geräteliste. -> Sie tragen im Feld `Total calculation` den Wert `+1` ein.
+* Sie haben ein Energiemessgerät für Ihre Solaranalage (Gerät 1) und ein Messgerät für den Gesamt am Zähler (Gerät 2) in Ihrem Haus. -> Sie tragen im Feld `Total calculation` den Wert `+2` und im Feld `Production calculation` den Wert `+1` ein.
+* Sie haben drei Energiemessgeräte: Für Ihre erste Solaranlage (Gerät 1), ihre zweite Solaranlage (Gerät 2) und für den Verbrauch in Ihrem Haus (nicht Gesamt am Zähler, sondern nur Verbrauch). -> Sie trage im Feld `Total calculation` den Wert `+1+2-3` und im Feld `Production calculation` den Wert `+1+2` ein.
+
+== Klimaanzeige
+
+Die Klimaanzeige kann über über das Bildschirmsymbol im Menü `Climate display config` vorgenommen werden.
+
+Es gibt die Möglichkeit bis zu drei Klimaanzeigen anzeigen zu lassen.
+Hierfür füllen Sie die Felder `Climate display` in folgendem Format:
+
+* Normale Buchstaben werden wie eingegeben auf dem Display dargestellt.
+* Der Wert eines Zusatzgerätes wird angezeigt, wenn ein Dollar-Zeichen gefolgt von der Nummer des Zusatzgerätes angegeben wird. Hat das Zusatzgerät mehrere Werte, dann kann der Wert mit einem Punkt gefolgt vom Wertindex bestimmt werden.
+* Das °-Zeichen wird mit einem `*` erfasst.
+
+Beispiele:
+
+* `Haus $1*C` wird zu 'Haus 28°C'.
+* `T$1.0*C F$1.1%` wird zu 'T27°C F40%'.
+
+== Zurücksetzen von HoDi
+
+Sollte es notwendig sein, HoDi vollständig zurückzusetzen, dann gehen Sie wie folgt vor:
+
+* Drücken Sie den Reset-Knopf
+* Warten Sie, bis im Display `Network init` steht.
+* Drücken Sie den Reset-Knopf
+
+Wiederholen Sie den Vorgang, sechs mal.
+
+== Lizenzierung
+
+Zusammenfassung (ohne rechtliche Wirkung): **Sie dürfen HoDi kostenlos nutzen.**
+
+Die HoDi-Software unterliegt der nachfolgenden Lizenz. HoDi (c) 2023-2024 by Joerg Plenert, Voerde.
+
+Mit der Installation, Nutzung oder Weiterverbreitung der Software HoDi kommt dieser Lizenzvertrag bindend zwischen dem Lizenzgeber (Joerg Plenert, Voerde) und dem Lizenznehmer (der Person oder Einheit die die Installation, Nutzung oder Weiterverbeitung vornimmt) zustande.
+
+* Der Lizenznehmer darf HoDi kostenlos unverändert installieren und nutzen, sowohl privat als auch kommerziell.
+* Der Lizenznehmer darf HoDi unverändert weiterverbreiten.
+* Jede Weiterverbreitung muss diese Lizenz beinhalten und es muss der Name und die URL des Produktes (https://www.eely.eu) sowie der Name des Lizenzgebers (Joerg Plenert, Voerde) genannt werden.
+* Der Lizenznehmer darf HoDi nicht verkaufen, vermieten oder verleasen oder anderweitig Geld für die Software oder deren Verbreitung verlangen.
+* Der Lizenznehmer darf Hardware verkaufen, auf dem die Software in vollem Umfang funktionstüchtig installiert ist.
+* HoDi wird nur als Object Code (maschinenlesbare, übersetzte Form der Software) bereitgestellt.
+* Der Lizenznehmer hat keinen Anspruch auf den Quellcode der Software.
+* Der Lizenznehmer darf HoDi nicht modifizieren oder zurückentwickeln.
+* HoDi darf nicht für illegale oder nach europäischen Standards unetische Zwecke genutzt werden.
+* Der Lizenznehmer darf nicht in der russischen Föderation oder einer Nachfolgeorganisation ansässig sein.
+* Der Lizenzgeber behält sich vor, für zukünftige Versionen von Hodi, die Lizenzbedingungen zu ändern.
+
+Es besteht keinerlei Gewährleistung für die Software, soweit dies gesetzlich zulässig ist. Der Lizenzgeber stellt die Software so zur Verfügung, "wie sie ist", ohne irgendeine Gewährleistung, weder ausdrücklich noch implizit, einschließlich - aber nicht begrenzt auf - die implizite Gewährleistung der Marktreife oder der Verwendbarkeit für einen bestimmten Zweck. Das volle Risiko bezüglich Qualität und Leistungsfähigkeit des Programms liegt beim Lizenznehmer. Sollte sich die Software als fehlerhaft herausstellen, liegen die Kosten für notwendigen Service, Reparatur oder Korrektur beim Lizenznehmer.
+
+In keinem Fall, außer wenn durch geltendes Recht gefordert, ist der Lizenzgeber gegenüber dem Lizenznehmer für irgendwelche Schäden haftbar, einschließlich jeglicher allgemeiner oder spezieller Schäden, Schäden durch Seiteneffekte (Nebenwirkungen) oder Folgeschäden, die aus der Benutzung der Software oder der Unbenutzbarkeit der Software folgen (einschließlich - aber nicht beschränkt auf - Datenverluste, fehlerhafte Verarbeitung von Daten, Verluste, die von Ihnen oder anderen getragen werden müssen, oder dem Unvermögen des Programms, mit irgendeinem anderen Programm zusammenzuarbeiten), selbst wenn der Lizenzgeber über die Möglichkeit solcher Schäden unterrichtet worden war.
+
+Sollten der o.a. Gewährleistungsausschluß und die o.a. Haftungsbegrenzung aufgrund ihrer Bedingungen gemäß lokalem Recht unwirksam sein, sollen Bewertungsgerichte dasjenige lokale Recht anwenden, das einer absoluten Aufhebung jeglicher zivilen Haftung in Zusammenhang mit dem Programm am nächsten kommt.
+
+HoDi verfügt aktuell über keinerlei Authentifizierung. Um Missbrauch vorzubeugen, sollte HoDi nur in privaten und geschützten Umgebungen genutzt werden. 
+
+=== Open-Source
+
+HoDi nutzt Open-Source:
+
+* ESP-IDF, Apache License 2.0, Copyright (C) 2015-2023 Espressif Systems, (https://docs.espressif.com/projects/esp-idf/en/latest/esp32/COPYRIGHT.html)
+* SmartMatrix, MIT License, Copyright (c) 2020 Louis Beaudoin (Pixelmatix), (https://github.com/pixelmatix/SmartMatrix)
+
+== HoDi11P4-Hardware
+
+Das HoDi11P4 ist eine frühe Prototypen- und Laborversion einer HoDi-Hardware, die nicht zum Wiederverkauf gedacht ist.
+Sie ist nur für den häuslichen Gebrauch zu Testzwecken und nur für die Nutzung innerhalb des Hauses (ausschließlich normale Wohnräume) bei normalen Raumtemperaturen (10-28°C) und -Feuchtigkeiten entwickelt.
+Aufgrund des fehlenden Berührungsschutzes zur Elektronik darf das Gerät nur unter beachten der ESD-Vorschriften behandelt werden. 
+Wegen der geringen Spannung (5 Volt) besteht jedoch keine Gefahr eines Elektroschocks.
+Die oben beschriebenen Punkte führen dazu, dass das Gerät für den passionierten Hobby-Elektroniker gedacht ist, jedoch nicht für den Endverbraucher.
+
+HoDiP11P4 verfügt über ein 25,5 x 12,8 cm großes LED-Display mit insgesamt 64 x 32 LEDs.
+Die Verbindung zu dem Display erfolgt über ein 2,4GHz WLAN und die Spannungsversorgung über ein übliches USB-Netzgerät mit 5V und 3A Festspannung.
+
+image::HoDi11P4_back1.jpg["Rückansicht HoDi11P4", align=center]
+
+. Mikro-USB Anschluss
+. Reset-Knopf
+
+Alle anderen Elemente dürfen nicht genutzt werden.
+
+=== Spannungsversorgung
+
+Verbinden Sie die USB-Buchse auf der Rückseite mit einem Mikro-USB-Kabel und einem USB-Netzgerät.
+Achten Sie dabei darauf, dass das Netzgerät ausschließlich 5 Volt und eine minimale Leistung von 3 Ampere oder 15 Watt bereitstellt.
+
+WARNING: Es gibt Netzteile, welche auch höhere Spannungen bereitstellen. Höhere Spannungen können das HoDi zerstören, bei deren Verwendung erlischt die Gewährleistung. Wir empfehlen die Nutzung des Netzteils von HOSOW AD-1203U.
+
+=== Aufstellung
+
+Das Display kann einfach auf den unteren Rand gestellt werden. Da die Auflage recht schmal ist, muss auf einen erschütterungsfreien Stand geachtet werden, da das Gerät sonst umkippen oder herunterfallen könnte. Weiter können die hinten am Gerät vorhandenen Muttern für eine Aufhängung genutzt werden.
