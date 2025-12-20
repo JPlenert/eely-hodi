@@ -59,6 +59,10 @@ render(<App />, document.body)
 
 window.onload = async () => {
   var url = "com";
+  if (location.hash.startsWith("#testip=")){
+    url = `http://${location.hash.substring(8)}/com`;
+  }
+  console.info(`Using URL ${url}`);
   
   symbolList.init();
   symbolList.addSvg(new SymbolArrowRepeat());
