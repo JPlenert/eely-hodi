@@ -1,7 +1,6 @@
 // Eely-Hodi - (c) 2022-25 by Joerg Plenert | https://eely.eu
 
-import { EspConfigCubit, EspJsonConfigEditor, h, Fragment, ModalController, render, useState } from "eely-base-web";
-import { Navbar, NavbarItem } from "eely-base-web";
+import { EspConfigCubit, h, render } from "eely-base-web";
 import { globalHoDiCubit } from "./cubits/hodiCubit";
 import { symbolList } from "eely-base-web";
 import { SymbolTrash } from "eely-base-web/components/symbols/symbolTrash"
@@ -15,47 +14,10 @@ import { SymbolPlus} from "eely-base-web/components/symbols/symbolPlus"
 
 import { global } from "./global";
 import { HodiCom } from "./features/hodiCom";
-import { Dashboard } from "./components/dashboard";
-import { HoDiConfigPage } from "./components/hodiConfigPage";
-import { SettingsPage } from "./components/settingsPage";
-import "./my.css";
+import { BasePage } from "./components/basePage";
+import "./my.css"; 
 
-let refreshCallback : () => void;
-export function setRefreshCallback(cb : () => void) {
-  refreshCallback = cb;
-}
-
-
-// App Component
-const App = () =>{ 
-  
-    const [page, setPage] = useState(0);
-  
-    return (
-
-  <div>
-  <ModalController/>
-  <Navbar headLineText="HoDi" url="https://eely.eu" urlInfo="eely">
-
-    <NavbarItem symbolName={SymbolHouseDoor.href} onClick={() => {setPage(0)}}/>
-    <NavbarItem symbolName={SymbolGear.href} onClick={() => {setPage(1)}}/>
-    <NavbarItem symbolName={SymbolDisplay.href} onClick={() => {setPage(2)}}/>
-    <NavbarItem symbolName={SymbolCardText.href} onClick={() => {setPage(3)}}/>
-    {(page == 0 || page == 1) && <NavbarItem symbolName={SymbolArrowRepeat.href} onClick={() => { refreshCallback(); }}/>} 
-  
-    </Navbar>
-  
-    {page == 0 && <Dashboard/>}
-    {page == 1 && <SettingsPage/>}
-    {page == 2 && <HoDiConfigPage configCubit={global.configCubit} />}
-    {page == 3 && <EspJsonConfigEditor configCubit={global.configCubit} />}
-  
-  </div>
-  )}
-
-  
-
-render(<App />, document.body)
+render(<BasePage />, document.body)
 
 window.onload = async () => {
   var url = "com";

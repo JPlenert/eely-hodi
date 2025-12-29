@@ -2,7 +2,7 @@
 #include "DeviceInstanceShellyPlugS.h"
 #include "esp_log.h"
 
-DeviceInstanceShellyPlugS ::DeviceInstanceShellyPlugS(ConfigDeviceShelly &config) : DeviceInstanceShelly(config)
+DeviceInstanceShellyPlugS ::DeviceInstanceShellyPlugS(ConfigDeviceShelly &config) : DeviceInstanceShelly(2, config)
 {
 	_power = 0;
 	_voltage = 0;

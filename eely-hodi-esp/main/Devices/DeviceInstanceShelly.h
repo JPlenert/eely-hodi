@@ -12,9 +12,10 @@ class DeviceInstanceShelly : public DeviceInstance
 {
 private:
     ConfigDeviceShelly& _config;
+    int _deviceGeneration;
 
 public:
-    DeviceInstanceShelly(ConfigDeviceShelly& config);
+    DeviceInstanceShelly(int deviceGeneration, ConfigDeviceShelly& config);
     string GetDeviceId() override;
     string GetDeviceName() override;
 

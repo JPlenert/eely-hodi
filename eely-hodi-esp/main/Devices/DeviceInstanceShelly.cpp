@@ -8,8 +8,9 @@ static const char* TAG = "DeviceInstanceShelly";
 
 #define DIRECT_BUFFER_SIZE (2*1024)
 
-DeviceInstanceShelly :: DeviceInstanceShelly(ConfigDeviceShelly& config) : DeviceInstance(0, config), _config(config)
+DeviceInstanceShelly :: DeviceInstanceShelly(int deviceGeneration, ConfigDeviceShelly& config) : DeviceInstance(0, config), _config(config)
 {
+	_deviceGeneration = deviceGeneration;
 	if (_config.access == DeviceAccess_Shelly_Direct)
 		_syncFrequencyS = 20;
 	else if (_config.access == DeviceAccess_Shelly_CloudAPI)
@@ -35,7 +36,7 @@ Json DeviceInstanceShelly::GetStatus()
 
 	if (_config.access == DeviceAccess_Shelly_Direct)
 	{
-		if (_config.type == DeviceType_Shelly_PlugS || _config.type == DeviceType_Shelly_Pro3EM || _config.type == DeviceType_Shelly_ProEM)
+		if (_deviceGeneration == 1) //_config.type == DeviceType_Shelly_PlugS || _config.type == DeviceType_Shelly_Pro3EM || _config.type == DeviceType_Shelly_ProEM)
 		{
 			// Gen2 Devices with enabled auth are using the digest algorithm for authentication
 			// This was introduced on Dec 15, 2023 and is not part of V5.1.2 of ESP IDF
@@ -45,7 +46,7 @@ Json DeviceInstanceShelly::GetStatus()
 			if (!_config.username.empty())
 				http.SetDigestAuth(_config.username, _config.password);
 		}
-		else
+		else // (_deviceGeneration > 1)
 		{
 			ESP_LOGI(TAG, "Type DeviceAccess_Shelly_Direct (Gen1)");
 			http.SetUrl(string_format("http://%s/status", _config.host.c_str()));

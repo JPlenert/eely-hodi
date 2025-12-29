@@ -1,7 +1,7 @@
 // Eely-HoDi - (c) 2022-25 by Joerg Plenert | https://eely.eu
-#include "DeviceInstanceShellyProEM.h"
+#include "DeviceInstanceShellyEMGen3.h"
 
-DeviceInstanceShellyProEM :: DeviceInstanceShellyProEM(ConfigDeviceShelly& config) : DeviceInstanceShelly(2, config)
+DeviceInstanceShellyEMGen3 :: DeviceInstanceShellyEMGen3(ConfigDeviceShelly& config) : DeviceInstanceShelly(3, config)
 {
 	_totalPower = 0;
 
@@ -14,7 +14,7 @@ DeviceInstanceShellyProEM :: DeviceInstanceShellyProEM(ConfigDeviceShelly& confi
 	_p2Voltage = 0;
 }
 
-double DeviceInstanceShellyProEM::GetLastReadingDouble(int idx)
+double DeviceInstanceShellyEMGen3::GetLastReadingDouble(int idx)
 {
 	switch (idx) {
 	case 0: return _totalPower;
@@ -31,12 +31,12 @@ double DeviceInstanceShellyProEM::GetLastReadingDouble(int idx)
 	return 0;
 }
 
-int DeviceInstanceShellyProEM::GetLastReadingInt(int idx)
+int DeviceInstanceShellyEMGen3::GetLastReadingInt(int idx)
 {
 	return (int)GetLastReadingDouble(idx);
 }
 
-bool DeviceInstanceShellyProEM::DoSync()
+bool DeviceInstanceShellyEMGen3::DoSync()
 {
 	Json status = DeviceInstanceShelly::GetStatus();
 	optional<Json> jNode;

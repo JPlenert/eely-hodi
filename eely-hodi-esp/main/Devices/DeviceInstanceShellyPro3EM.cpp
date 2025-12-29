@@ -1,7 +1,7 @@
 // Eely-HoDi - (c) 2022-24 by Joerg Plenert | https://eely.eu
 #include "DeviceInstanceShellyPro3EM.h"
 
-DeviceInstanceShellyPro3EM :: DeviceInstanceShellyPro3EM(ConfigDeviceShelly& config) : DeviceInstanceShelly(config)
+DeviceInstanceShellyPro3EM :: DeviceInstanceShellyPro3EM(ConfigDeviceShelly& config) : DeviceInstanceShelly(2, config)
 {
 	_totalPower = 0;
 

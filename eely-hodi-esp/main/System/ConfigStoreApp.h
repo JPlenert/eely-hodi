@@ -20,7 +20,8 @@ enum DeviceType
     DeviceType_Tibber_Price,
 
     DeviceType_Shelly_ProEM,
-    DeviceType_Shelly_EM,
+    DeviceType_Shelly_EMGen1,
+    DeviceType_Shelly_EMGen3,
 };
 
 enum DeviceAccessType

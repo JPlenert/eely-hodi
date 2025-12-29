@@ -3,7 +3,7 @@
 import { h, Component, Fragment, tryRegisterCubit } from "eely-base-web";
 import { HeaderValueItem, getRssiLabel } from "eely-base-web";
 import { HoDiCubit, HoDiState, globalHoDiCubit } from "../cubits/hodiCubit"
-import { setRefreshCallback } from "../app";
+import { setRefreshCallback } from "../refreshCallback";
 import { EspEDeviceList } from "eely-base-web";
 
 export class Dashboard extends Component {

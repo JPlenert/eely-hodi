@@ -314,8 +314,10 @@ ConfigDeviceShelly* ConfigStoreApp :: ReadShellyDevice(Json& json)
         device->type = DeviceType_Shelly_HT;
     else if (value == "shelly_plugs")
         device->type = DeviceType_Shelly_PlugS;
-    else if (value == "shelly_em")
-        device->type = DeviceType_Shelly_EM;
+    else if (value == "shelly_em_gen1")
+        device->type = DeviceType_Shelly_EMGen1;
+    else if (value == "shelly_em_gen3")
+        device->type = DeviceType_Shelly_EMGen3;
     else if (value == "shelly_proem")
         device->type = DeviceType_Shelly_ProEM;
     else

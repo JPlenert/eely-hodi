@@ -13,7 +13,7 @@ private:
     double _lastHumReading;
 
 public:
-    DeviceInstanceShellyHT(ConfigDeviceShelly& config) : DeviceInstanceShelly(config), _lastTempReading(0), _lastHumReading(0) {}
+    DeviceInstanceShellyHT(ConfigDeviceShelly& config) : DeviceInstanceShelly(1, config), _lastTempReading(0), _lastHumReading(0) {}
     bool DoSync() override;
 
     double GetLastReadingDouble(int idx) override;
