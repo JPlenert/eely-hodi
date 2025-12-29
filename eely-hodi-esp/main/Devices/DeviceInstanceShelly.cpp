@@ -36,7 +36,7 @@ Json DeviceInstanceShelly::GetStatus()
 
 	if (_config.access == DeviceAccess_Shelly_Direct)
 	{
-		if (_deviceGeneration == 1) //_config.type == DeviceType_Shelly_PlugS || _config.type == DeviceType_Shelly_Pro3EM || _config.type == DeviceType_Shelly_ProEM)
+		if (_deviceGeneration >= 2)
 		{
 			// Gen2 Devices with enabled auth are using the digest algorithm for authentication
 			// This was introduced on Dec 15, 2023 and is not part of V5.1.2 of ESP IDF
@@ -46,7 +46,7 @@ Json DeviceInstanceShelly::GetStatus()
 			if (!_config.username.empty())
 				http.SetDigestAuth(_config.username, _config.password);
 		}
-		else // (_deviceGeneration > 1)
+		else // (_deviceGeneration == 1)
 		{
 			ESP_LOGI(TAG, "Type DeviceAccess_Shelly_Direct (Gen1)");
 			http.SetUrl(string_format("http://%s/status", _config.host.c_str()));
