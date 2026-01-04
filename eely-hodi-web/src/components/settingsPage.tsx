@@ -1,4 +1,4 @@
-// Eely-Hodi - (c) 2022-25 by Joerg Plenert | https://eely.eu
+// Eely-Hodi - (c) 2022-26 by Joerg Plenert | https://eely.eu
 
 import { h, Accordion, AccordionItem, Component } from "eely-base-web";
 import { EspWifiSettings, EspFirmwareUpload, EspResetDevice } from "eely-base-web";
@@ -34,7 +34,7 @@ export class SettingsPage extends Component<SettingsPageProps, SettingsPageState
                     <EspResetDevice com={global.com}/>
                 </AccordionItem>
                 <AccordionItem headerText="Info">
-                    <div>(c)2022-25 by Joerg Plenert. Version {globalHoDiCubit.state.lastDeviceInfo.version}</div>
+                    <div>(c)2022-26 by Joerg Plenert. Version {globalHoDiCubit.state.lastDeviceInfo.version}</div>
                 </AccordionItem>
             </Accordion>
         );

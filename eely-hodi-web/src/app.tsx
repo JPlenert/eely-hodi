@@ -1,4 +1,4 @@
-// Eely-Hodi - (c) 2022-25 by Joerg Plenert | https://eely.eu
+// Eely-Hodi - (c) 2022-26 by Joerg Plenert | https://eely.eu
 
 import { EspConfigCubit, h, render } from "eely-base-web";
 import { globalHoDiCubit } from "./cubits/hodiCubit";

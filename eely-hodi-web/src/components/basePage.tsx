@@ -1,4 +1,4 @@
-// Eely-Hodi - (c) 2022-25 by Joerg Plenert | https://eely.eu
+// Eely-Hodi - (c) 2022-26 by Joerg Plenert | https://eely.eu
 
 import { h, Component, ModalController, Navbar, NavbarItem, EspJsonConfigEditor } from "eely-base-web";
 import { SymbolGear } from "eely-base-web/components/symbols/symbolGear"
@@ -40,13 +40,12 @@ export class BasePage extends Component<BasePageProps, BasePageState>{
             <NavbarItem symbolName={SymbolCardText.href} onClick={() => {this.setState({page: 3})}}/>
             {(this.state.page == 0 || this.state.page == 1) && <NavbarItem symbolName={SymbolArrowRepeat.href} onClick={() => { doRefreshCallback(); }}/>} 
           
-            </Navbar>
-          
-            {this.state.page == 0 && <Dashboard/>}
-            {this.state.page == 1 && <SettingsPage/>}
-            {this.state.page == 2 && <HoDiConfigPage configCubit={global.configCubit} />}
-            {this.state.page == 3 && <EspJsonConfigEditor configCubit={global.configCubit} />}
-          
+          </Navbar>
+        
+          {this.state.page == 0 && <Dashboard/>}
+          {this.state.page == 1 && <SettingsPage/>}
+          {this.state.page == 2 && <HoDiConfigPage configCubit={global.configCubit} />}
+          {this.state.page == 3 && <EspJsonConfigEditor configCubit={global.configCubit} />}
           </div>);
     }
 }

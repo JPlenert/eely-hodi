@@ -1,4 +1,4 @@
-// Eely-Hodi - (c) 2022-25 by Joerg Plenert | https://eely.eu
+// Eely-Hodi - (c) 2022-26 by Joerg Plenert | https://eely.eu
 
 import { h, Component, Fragment, tryRegisterCubit } from "eely-base-web";
 import { HeaderValueItem, getRssiLabel } from "eely-base-web";

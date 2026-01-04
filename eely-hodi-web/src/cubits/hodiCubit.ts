@@ -1,3 +1,5 @@
+// Eely-Hodi - (c) 2022-26 by Joerg Plenert | https://eely.eu
+
 import { global }  from '../global';
 import { CubitBase } from "eely-base-web";
 import { DeviceInfoReply }  from '../features/hodiCom';
