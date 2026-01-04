@@ -1,4 +1,4 @@
-// Eely-HoDi - (c) 2022-24 by Joerg Plenert | https://eely.eu
+// Eely-HoDi - (c) 2022-26 by Joerg Plenert | https://eely.eu
 #include "Display.h"
 
 SMLayerBackground<rgb24, 0> backgroundLayer(DISPLAY_MATRIX_WIDTH, DISPLAY_MATRIX_HEIGHT);

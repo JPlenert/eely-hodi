@@ -1,4 +1,4 @@
-// Eely-HoDi - (c) 2022-24 by Joerg Plenert | https://eely.eu
+// Eely-HoDi - (c) 2022-26 by Joerg Plenert | https://eely.eu
 #include "DeviceInstanceShellyHT.h"
 
 double DeviceInstanceShellyHT::GetLastReadingDouble(int idx)

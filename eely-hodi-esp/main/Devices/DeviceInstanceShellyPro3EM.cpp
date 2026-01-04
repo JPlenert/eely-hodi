@@ -1,4 +1,4 @@
-// Eely-HoDi - (c) 2022-24 by Joerg Plenert | https://eely.eu
+// Eely-HoDi - (c) 2022-26 by Joerg Plenert | https://eely.eu
 #include "DeviceInstanceShellyPro3EM.h"
 
 DeviceInstanceShellyPro3EM :: DeviceInstanceShellyPro3EM(ConfigDeviceShelly& config) : DeviceInstanceShelly(2, config)
